@@ -2,3 +2,4 @@ __pycache__/
 .pytest_cache/
 .vscode/
 tests_data/nsidc/*.nc
+**/__init__.py

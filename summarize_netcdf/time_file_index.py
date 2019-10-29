@@ -1,6 +1,7 @@
 import glob
 import os
 
+from datetime import datetime
 import netCDF4
 import numpy as np
 import pandas as pd
@@ -9,7 +10,11 @@ from tqdm import trange
 
 
 def time_file_index(
-    base_dir, time_var, begin_date=begin_date, end_date=end_date, filenames=None
+    base_dir,
+    time_var,
+    begin_date=datetime(2013, 1, 1, 0, 0),
+    end_date=datetime(2013, 1, 5, 0, 0),
+    filenames=None,
 ):
     """Index a set of files and generate a pandas data frame of time (index) and
     filename. 
@@ -40,7 +45,7 @@ def time_file_index(
         numerical index value of the time slice in the named file.
     """
 
-    if not filenames:
+    if filenames is None:
         filenames = find_files(base_dir, begin_date, end_date)
 
     nfiles = len(filenames)
@@ -103,6 +108,9 @@ def find_files(base_dir, begin_date, end_date):
         search_dirs.append(stop_date.strftime("%Y/%Y_%m"))
 
         stop_date += relativedelta(months=+1)
+
+    print("search directories")
+    print(search_dirs)
 
     filenames = []
 

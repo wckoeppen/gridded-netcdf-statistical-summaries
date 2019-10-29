@@ -10,3 +10,5 @@ import netCDF4
 import os
 import glob
 
+input_directory='/data/models/391183ee-827e-11e1-a4f3-00219bfe5678/'
+filenames = sorted(glob.glob(input_directory + '*.nc'))
